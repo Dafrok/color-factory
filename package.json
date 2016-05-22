@@ -1,10 +1,9 @@
 {
   "name": "color-factory",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "CSS color handler",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dafrok/color-factory.git"
@@ -20,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/Dafrok/color-factory/issues"
   },
-  "homepage": "https://github.com/Dafrok/color-factory#readme"
+  "homepage": "https://github.com/Dafrok/color-factory#readme",
+  "devDependencies": {
+    "rollup": "^0.26.3"
+  },
+  "dependencies": {
+    "css-color-names": "0.0.3"
+  }
 }
