@@ -1,4 +1,5 @@
 import csscolors from 'css-color-names'
+import colorParse from 'color-parse'
 class Color {
   constructor (cssColor) {
     const color = cssColor.replace(/ /g, '')
@@ -9,29 +10,9 @@ class Color {
       'rgba':
       'hsl':
       'hsla':
-      'string':
+      'named':
+      'transparent':
         break
-    }
-  }
-  _isHex (color) {
-    const colorValue = parseInt(color.subString(1, 7), 16)
-    return color[0] && (color.length === 7 || color.length === 4) &&　colorValue >=0 && colorValue <=16777215
-  }
-  _getColorFromString (color) {
-    if (window) {
-      const el = document.createElement('i')
-      el.style.color = color
-      return computedColor = (el.currentStyle ? el.currentStyle : window.getComputedStyle(el, null)).color
-    } else {
-      return csscolors[color] || 'rgb(0, 0, 0)'
-    }
-  }
-  _getColorType (color) {
-    const type = color.match(/^(hsl|hsla|rgba|rgb)\(.+\)$/)
-    if (type) {
-      return type[1]
-    } else if (_isHex(color)) {
-      return 'hex'
     }
   }
   toHex () {
