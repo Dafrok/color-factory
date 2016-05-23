@@ -1,5 +1,5 @@
-import csscolors from 'css-color-names'
-import colorParse from 'color-parse'
+import getColorType from './color-type.js'
+
 class Color {
   constructor (cssColor) {
     const color = cssColor.replace(/ /g, '')
@@ -14,6 +14,9 @@ class Color {
       'transparent':
         break
     }
+  }
+  getColorType (color) {
+    return getColorType(color)
   }
   toHex () {
 
