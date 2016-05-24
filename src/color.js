@@ -18,16 +18,26 @@ export default class Color {
         type = 'hsla'
       }
     }
-    const RGB = colorParse.toRGB(color, type)
-    const HSL = colorParse.toHSL(color, type)
-    const ALPHA = colorParse.getAlpha(color, type)
-    this.R = RGB.r
-    this.G = RGB.g
-    this.B = RGB.b
-    this.H = HSL.h
-    this.S = HSL.s
-    this.L = HSL.l
-    this.A = ALPHA
+    if (type === 'unknown') {
+      this.R = 0
+      this.G = 0
+      this.B = 0
+      this.H = 0
+      this.S = 0
+      this.L = 0
+      this.A = 0
+    } else {
+      const RGB = colorParse.toRGB(color, type)
+      const HSL = colorParse.toHSL(color, type)
+      const ALPHA = colorParse.getAlpha(color, type)
+      this.R = RGB.r
+      this.G = RGB.g
+      this.B = RGB.b
+      this.H = HSL.h
+      this.S = HSL.s
+      this.L = HSL.l
+      this.A = ALPHA
+    }
   }
   r (val) {
     if (typeof val === 'undefined') {

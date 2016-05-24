@@ -40,36 +40,42 @@ function isHSLA(colorAry) {
 
 export default function (color) {
   const type = color.match(/^(hsl|hsla|rgba|rgb)\(.+\)$/)
-  if (type) {
-    let ret = null
-    const result = type[1]
-    const colorAry = color.replace(/rgba|hsla|rgb|hsl|\(|\)/g, '').split(',')
-    switch (type[1]) {
-      case 'rgb':
-        ret = isRGB(colorAry) && result
-        break
-      case 'rgba':
-        ret = isRGBA(colorAry) && result
-        break
-      case 'hsl':
-        ret = isHSL(colorAry) && result
-        break
-      case 'hsla':
-        ret = isHSLA(colorAry) && result
-        break
-    }
-    if (ret) {
-      return ret
+  try {
+    if (type) {
+
+      let ret = null
+      const result = type[1]
+      const colorAry = color.replace(/rgba|hsla|rgb|hsl|\(|\)/g, '').split(',')
+      switch (type[1]) {
+        case 'rgb':
+          ret = isRGB(colorAry) && result
+          break
+        case 'rgba':
+          ret = isRGBA(colorAry) && result
+          break
+        case 'hsl':
+          ret = isHSL(colorAry) && result
+          break
+        case 'hsla':
+          ret = isHSLA(colorAry) && result
+          break
+      }
+      if (ret) {
+        return ret
+      } else {
+        throw new Error('Illegal color string.')
+      }
+    } else if (isHex(color)) {
+      return 'hex'
+    } else if (isNamedColor(color)) {
+      return 'named'
+    } else if (isTransparent(color)) {
+      return 'transparent'
     } else {
       throw new Error('Illegal color string.')
     }
-  } else if (isHex(color)) {
-    return 'hex'
-  } else if (isNamedColor(color)) {
-    return 'named'
-  } else if (isTransparent(color)) {
-    return 'transparent'
-  } else {
-    throw new Error('Illegal color string.')
+  } catch (e) {
+    return 'unknown'
   }
+
 }
