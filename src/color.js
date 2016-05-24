@@ -7,7 +7,7 @@ class Color {
     const type = this.getColorType(color)
     const RGB = colorParse.toRGB(color, type)
     const HSL = colorParse.toHSL(color, type)
-    const ALPHA = colorParse.getAlpha(color)
+    const ALPHA = colorParse.getAlpha(color, type)
     this.r = RGB[0]
     this.g = RGB[1]
     this.b = RGB[2]
