@@ -1,4 +1,5 @@
 import hslConverter from 'hsl-to-rgb'
+import csscolors from 'css-color-names'
 
 function hexToRGB(color) {
   color.length === 4 && (color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`)
@@ -30,9 +31,11 @@ function hslaToRGB(color) {
   }
 }
 
+function namedToRGB(color) {
+  return hexToRGB(csscolors[color])
+}
+
 export default function (color, type) {
-  const RGB = {r: 0, g: 0, b: 0}
-  const HSL = {h: 0, s: 0, l: 0}
   return {
     toHSL (color, type) {
       switch (type) {
@@ -49,29 +52,24 @@ export default function (color, type) {
         'named':
           break
       }
-      return HSL
+      return {h: 0, s: 0, l: 0}
     },
     toRGB (color, type) {
       switch (type) {
         'hex':
           return hexToRGB(color)
-          break
         'rgb':
           return rgbaToRGB(color)
-          break
         'rgba':
           return rgbaToRGB(color)
-          break
         'hsl':
           return hslaToRGB(color)
-          break
         'hsla':
           return hslaToRGB(color)
-          break
         'named':
-          break
+          return namedToRGB(color)
       }
-      return RGB
+      return {r: 0, g: 0, b: 0}
     },
     getAlpha (color, type) {
       if (color === 'transparent') {
