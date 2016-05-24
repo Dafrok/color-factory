@@ -7,7 +7,7 @@ $ npm i color-factory
 ```
 
 ## Usage
-```
+```es6
 import Color from 'color-factory'
 
 const colorFromString = new Color('rgba(12, 34, 56, 0.7)')
