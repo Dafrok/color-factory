@@ -1,3 +1,5 @@
+import hslConverter from 'hsl-to-rgb'
+
 function hexToRGB(color) {
   color.length === 4 && (color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`)
   return {
@@ -7,15 +9,26 @@ function hexToRGB(color) {
   }
 }
 
-function rgbToRGB(color) {
-  colorAry = color.slice(4, -1).split(',')
+function rgbaToRGB(color) {
+  rgbAry = color.slice(4, -1).split(',')
   return {
-    r: colorAry[0],
-    g: colorAry[1],
-    b: colorAry[2]
+    r: rgbAry[0],
+    g: rgbAry[1],
+    b: rgbAry[2]
   }
 }
 
+function hslaToRGB(color) {
+  hslAry = color.slice(4, -1).split(',')
+  hslAry[1] = parseFloat(hslAry[1].slice(0, -1)) / 100
+  hslAry[2] = parseFloat(hslAry[2].slice(0, -1)) / 100
+  rgbAry = hslConverter(hslAry[0], hslAry[1], hslAry[2])
+  return {
+    r: rgbAry[0],
+    g: rgbAry[1],
+    b: rgbAry[2]
+  }
+}
 
 export default function (color, type) {
   const RGB = {r: 0, g: 0, b: 0}
@@ -44,13 +57,16 @@ export default function (color, type) {
           return hexToRGB(color)
           break
         'rgb':
-          return rgbToRGB(color)
+          return rgbaToRGB(color)
           break
         'rgba':
+          return rgbaToRGB(color)
           break
         'hsl':
+          return hslaToRGB(color)
           break
         'hsla':
+          return hslaToRGB(color)
           break
         'named':
           break
