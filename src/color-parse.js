@@ -1,6 +1,10 @@
 import hslConverter from 'hsl-to-rgb'
 import csscolors from 'css-color-names'
 
+function rgbToHSL (color) {
+
+}
+
 function hexToRGB(color) {
   color.length === 4 && (color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`)
   return {
@@ -42,7 +46,7 @@ export default function (color, type) {
         'hex':
           break
         'rgb':
-          break
+          return rgbToHSL(color)
         'rgba':
           break
         'hsl':
