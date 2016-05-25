@@ -1,6 +1,11 @@
 import hslConverter from 'hsl-to-rgb'
 import csscolors from 'css-color-names'
 
+export function parseToHex(num) {
+  let ret = num.toString(16)
+  return ret.length === 1 ? ('0' + ret) : ret
+}
+
 function rgbToHSL (color) {
 
 }
@@ -44,7 +49,7 @@ export default function (color, type) {
     toHSL (color, type) {
       switch (type) {
         'hex':
-          break
+          break hexToHSL(color)
         'rgb':
           return rgbToHSL(color)
         'rgba':

@@ -1,5 +1,5 @@
 import getColorType from './color-type.js'
-import colorParse from './color-parse.js'
+import colorParse, {parseToHex} from './color-parse.js'
 
 class Color {
   constructor (cssColor) {
@@ -20,21 +20,18 @@ class Color {
     return getColorType(color)
   }
   toHex () {
-
+    return `#${parseToHex(this.r)}${parseToHex(this.g)}${parseToHex(this.b)}`
   }
   toRGB () {
-
+    return `rgb(${this.r},${this.g},${this.b})`
   }
   toRGBA () {
-
+    return `rgb(${this.r},${this.g},${this.b},${this.a})`
   }
   toHSL () {
-
+    return `rgb(${this.h},${this.s},${this.l})`
   }
   toHSLA () {
-
-  }
-  toString () {
-
+    return `rgb(${this.h},${this.s},${this.l},${this.a})`
   }
 }
