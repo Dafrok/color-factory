@@ -1,7 +1,7 @@
 {
   "name": "color-factory",
-  "version": "1.0.0",
-  "description": "CSS color handler",
+  "version": "0.1.0",
+  "description": "CSS color converter",
   "main": "index.js",
   "scripts": {
     "publish": "rollup -c"
