@@ -191,8 +191,9 @@
 
 	var csscolors = (index && typeof index === 'object' && 'default' in index ? index['default'] : index);
 
+	var regexp = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
+
 	function isLegalRate(rates) {
-	  var regexp = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
 	  var _iteratorNormalCompletion = true;
 	  var _didIteratorError = false;
 	  var _iteratorError = undefined;
@@ -224,7 +225,6 @@
 	}
 
 	function isLegalNumber(numbers) {
-	  var regexp = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
 	  var _iteratorNormalCompletion2 = true;
 	  var _didIteratorError2 = false;
 	  var _iteratorError2 = undefined;
