@@ -21,26 +21,99 @@ colorFromObject.toRGBA()
 
 ## API
 
-#### toHex
+#### .toHex()
 
-#### toRGB
+Convert color instance to CSS hex string.
 
-#### toRGBA
+#### .toRGB()
 
-#### toHSL
+Convert color instance to CSS rgb string.
 
-#### toHSLA
+#### .toRGBA()
 
-#### r
+Convert color instance to CSS rgba string.
 
-#### g
+#### .toHSL()
 
-#### b
+Convert color instance to CSS hsl string.
 
-#### h
+#### .toHSLA()
 
-#### s
+Convert color instance to CSS hsla string.
 
-#### l
+#### .r()
 
-#### a
+Get the value of red channel.
+
+#### .r(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of red channel.
+
+#### .g()
+
+Get the value of green channel.
+
+#### .g(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of green channel.
+
+#### .b()
+
+Get the value of blue channel.
+
+#### .b(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of blue channel.
+
+#### .h()
+
+Get the value of hue.
+
+#### .h(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of hue.
+
+#### .s()
+
+Get the value of saturation.
+
+#### .s(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of saturation.
+
+#### .l()
+
+Get the value of lightness.
+
+#### .l(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of lightness.
+
+#### .a()
+
+Get the value of alpha channel.
+
+#### .a(value)
+
+- value
+  - Type: String
+  - Return: this 
+  - Description: Set the value of alpha.
