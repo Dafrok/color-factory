@@ -1,4 +1,5 @@
 import hslConverter from 'hsl-to-rgb'
+import rgbConverter from 'rgb-to-hsl'
 import csscolors from 'css-color-names'
 
 export function parseToHex(num) {
@@ -6,9 +7,33 @@ export function parseToHex(num) {
   return ret.length === 1 ? ('0' + ret) : ret
 }
 
-function rgbToHSL (color) {
-
+function rgbaToHSL (color) {
+  rgbAry = color.slice(4, -1).split(',')
+  hslAry = rgbConverter(rgbAry[0], rgbAry[1], rgbAry[2])
+  hslAry[1] = hslAry[1].slice(0, -1) / 100
+  hslAry[2] = hslAry[2].slice(0, -1) / 100
+  return {
+    h: hslAry[0],
+    s: hslAry[1],
+    l: hslAry[2]
+  }
 }
+
+function hslaToHSL (color) {
+  const rgb = hslaToRGB(color)
+  return rgbaToHSL(`rgb(${rgb.r},${rgb.g},${rgb.b})`)
+}
+
+function hexToHSL (color) {
+  const rgb = hexToRGB(color)
+  return rgbaToHSL(`rgb(${rgb.r},${rgb.g},${rgb.b})`)
+}
+
+function namedToHSL (color) {
+  const rgb = namedToRGB(color)
+  return rgbaToHSL(`rgb(${rgb.r},${rgb.g},${rgb.b})`)
+}
+
 
 function hexToRGB(color) {
   color.length === 4 && (color = `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`)
@@ -30,8 +55,8 @@ function rgbaToRGB(color) {
 
 function hslaToRGB(color) {
   hslAry = color.slice(4, -1).split(',')
-  hslAry[1] = parseFloat(hslAry[1].slice(0, -1)) / 100
-  hslAry[2] = parseFloat(hslAry[2].slice(0, -1)) / 100
+  hslAry[1] = hslAry[1].slice(0, -1) / 100
+  hslAry[2] = hslAry[2].slice(0, -1) / 100
   rgbAry = hslConverter(hslAry[0], hslAry[1], hslAry[2])
   return {
     r: rgbAry[0],
@@ -49,17 +74,15 @@ export default function (color, type) {
     toHSL (color, type) {
       switch (type) {
         'hex':
-          break hexToHSL(color)
+          return hexToHSL(color)
         'rgb':
-          return rgbToHSL(color)
         'rgba':
-          break
+          return rgbaToHSL(color)
         'hsl':
-          break
         'hsla':
-          break
+          return hslaToHSL(color)
         'named':
-          break
+          return namedToHSL(color)
       }
       return {h: 0, s: 0, l: 0}
     },
@@ -68,11 +91,9 @@ export default function (color, type) {
         'hex':
           return hexToRGB(color)
         'rgb':
-          return rgbaToRGB(color)
         'rgba':
           return rgbaToRGB(color)
         'hsl':
-          return hslaToRGB(color)
         'hsla':
           return hslaToRGB(color)
         'named':
