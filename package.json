@@ -1,6 +1,6 @@
 {
   "name": "color-factory",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "CSS color handler",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,12 @@
     "url": "git+https://github.com/Dafrok/color-factory.git"
   },
   "keywords": [
-    "css",
     "color",
-    "factory",
+    "css",
+    "convert",
+    "check",
+    "transmit",
+    "color-factory",
     "object"
   ],
   "author": "Dafrok (o.o@mug.dog)",
@@ -33,7 +36,6 @@
   "dependencies": {
     "color-parse": "^1.1.0",
     "css-color-names": "0.0.3",
-    "hsl-to-rgb": "^1.0.0",
     "hsl-to-rgb-for-reals": "^1.1.0",
     "rgb-to-hsl": "0.0.2"
   }
