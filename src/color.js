@@ -1,19 +1,19 @@
 import getColorType from './color-type.js'
 import colorParse, {parseToHex} from './color-parse.js'
 
-class Color {
+export default class Color {
   constructor (cssColor) {
     const color = cssColor.replace(/ /g, '')
     const type = this.getColorType(color)
     const RGB = colorParse.toRGB(color, type)
     const HSL = colorParse.toHSL(color, type)
     const ALPHA = colorParse.getAlpha(color, type)
-    this.r = RGB[0]
-    this.g = RGB[1]
-    this.b = RGB[2]
-    this.h = HSL[0]
-    this.s = HSL[1]
-    this.l = HSL[2]
+    this.r = RGB.r
+    this.g = RGB.g
+    this.b = RGB.b
+    this.h = HSL.h
+    this.s = HSL.s
+    this.l = HSL.l
     this.a = ALPHA
   }
   getColorType (color) {

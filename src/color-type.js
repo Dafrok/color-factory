@@ -1,4 +1,4 @@
-import csscolors from 'css-color-names'
+import csscolors from 'color-name'
 
 function isHex(color) {
   const colorValue = parseInt(color.substring(1, 7), 16)
@@ -20,7 +20,7 @@ function isNamedColor(color) {
 function isLegalRate (rates) {
   const regexp = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/
   for (let rate of rates) {
-    if (rate[rate.length - 1] !== '%' || regexp.test(+rate.slice(0, rate.length - 1))) {
+    if (rate[rate.length - 1] !== '%' || !regexp.test(+rate.slice(0, rate.length - 1))) {
       return false
     }
   }
