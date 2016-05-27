@@ -20,14 +20,22 @@ export default class Color {
     const RGB = colorParse.toRGB(color, type)
     const HSL = colorParse.toHSL(color, type)
     const ALPHA = colorParse.getAlpha(color, type)
-    this.r = RGB.r
-    this.g = RGB.g
-    this.b = RGB.b
-    this.h = HSL.h
-    this.s = HSL.s
-    this.l = HSL.l
-    this.a = ALPHA
+    this.R = RGB.r
+    this.G = RGB.g
+    this.B = RGB.b
+    this.H = HSL.h
+    this.S = HSL.s
+    this.L = HSL.l
+    this.A = ALPHA
   }
+  // r (val) {
+  //   if (type of val === 'undefined') {
+  //     return this.R
+  //   } else {
+  //     this.R = val
+  //     return this
+  //   }
+  // }
   getColorType (color) {
     return getColorType(color)
   }
