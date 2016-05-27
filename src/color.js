@@ -2,30 +2,31 @@ import getColorType from './color-type.js'
 import colorParse, {parseToHex} from './color-parse.js'
 
 export default class Color {
-  constructor (cssColor = {}) {
+  constructor (cssColor = {r: 0, g: 0, b: 0, h: 0, s: 0, l: 0, a: 0}) {
+    let color
+    let type
     if (typeof cssColor === 'string') {
-      const color = cssColor.replace(/ /g, '')
-      const type = this.getColorType(color)
-      const RGB = colorParse.toRGB(color, type)
-      const HSL = colorParse.toHSL(color, type)
-      const ALPHA = colorParse.getAlpha(color, type)
-      this.r = RGB.r
-      this.g = RGB.g
-      this.b = RGB.b
-      this.h = HSL.h
-      this.s = HSL.s
-      this.l = HSL.l
-      this.a = ALPHA
+      color = cssColor.replace(/ /g, '')
+      type = this.getColorType(color)
     } else {
-      this.r = cssColor.r || 0
-      this.g = cssColor.g || 0
-      this.b = cssColor.b || 0
-      this.h = cssColor.h || 0
-      this.s = cssColor.s || 0
-      this.l = cssColor.l || 0
-      this.a = cssColor.a || 0
+      if (cssColor.r || cssColor.g || cssColor.b) {
+        color = `rgba(${cssColor.r || 0},${cssColor.g || 0},${cssColor.b || 0},${cssColor.a || 1})`
+        type = 'rgba'
+      } else {
+        color = `hsl(${cssColor.h || 0},${(cssColor.s || 0) * 100}%,${(cssColor.l || 0) * 100}%,${cssColor.a || 1})`
+        type = 'hsla'
+      }
     }
-
+    const RGB = colorParse.toRGB(color, type)
+    const HSL = colorParse.toHSL(color, type)
+    const ALPHA = colorParse.getAlpha(color, type)
+    this.r = RGB.r
+    this.g = RGB.g
+    this.b = RGB.b
+    this.h = HSL.h
+    this.s = HSL.s
+    this.l = HSL.l
+    this.a = ALPHA
   }
   getColorType (color) {
     return getColorType(color)
