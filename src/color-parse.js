@@ -7,7 +7,7 @@ export function parseToHex(num) {
   return ret.length === 1 ? ('0' + ret) : ret
 }
 
-function getLimitedNumber(num, max, min) {
+export function getLimitedNumber(num, max, min) {
   return num > max ? max : (num < min ? min : num)
 }
 
