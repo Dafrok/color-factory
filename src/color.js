@@ -1,5 +1,6 @@
 import getColorType from './color-type.js'
-import colorParse, {parseToHex} from './color-parse.js'
+import colorParse, {parseToHex, getLimitedNumber} from './color-parse.js'
+import {isLegalRate, isLegalNumber} from './color-validator.js'
 
 export default class Color {
   constructor (cssColor = {r: 0, g: 0, b: 0, h: 0, s: 0, l: 0, a: 0}) {
@@ -28,30 +29,102 @@ export default class Color {
     this.L = HSL.l
     this.A = ALPHA
   }
-  // r (val) {
-  //   if (type of val === 'undefined') {
-  //     return this.R
-  //   } else {
-  //     this.R = val
-  //     return this
-  //   }
-  // }
+  r (val) {
+    if (typeof val === 'undefined') {
+      return this.R
+    } else {
+      this.R = getLimitedNumber(val | 0, 255, 0)
+      const HSL = colorParse.toHSL(this.toRGB(), 'rgb')
+      this.H = HSL.h
+      this.S = HSL.s
+      this.L = HSL.l
+      return this
+    }
+  }
+  g (val) {
+    if (typeof val === 'undefined') {
+      return this.G
+    } else {
+      this.G = getLimitedNumber(val | 0, 255, 0)
+      const HSL = colorParse.toHSL(this.toRGB(), 'rgb')
+      this.H = HSL.h
+      this.S = HSL.s
+      this.L = HSL.l
+      return this
+    }
+  }
+  b (val) {
+    if (typeof val === 'undefined') {
+      return this.B
+    } else {
+      this.B = getLimitedNumber(val | 0, 255, 0)
+      const HSL = colorParse.toHSL(this.toRGB(), 'rgb')
+      this.H = HSL.h
+      this.S = HSL.s
+      this.L = HSL.l
+      return this
+    }
+  }
+  h (val) {
+    if (typeof val === 'undefined') {
+      return this.H
+    } else {
+      this.H = (val | 0) % 360
+      const RGB = colorParse.toRGB(this.toHSL(), 'hsl')
+      this.R = RGB.r
+      this.G = RGB.g
+      this.B = RGB.b
+      return this
+    }
+  }
+  s (val) {
+    if (typeof val === 'undefined') {
+      return this.S
+    } else {
+      this.S = getLimitedNumber(parseFloat(val) || 0, 1, 0)
+      const RGB = colorParse.toRGB(this.toHSL(), 'hsl')
+      this.R = RGB.r
+      this.G = RGB.g
+      this.B = RGB.b
+      return this
+    }
+  }
+  l (val) {
+    if (typeof val === 'undefined') {
+      return this.L
+    } else {
+      this.L = getLimitedNumber(parseFloat(val) || 0, 1, 0)
+      const RGB = colorParse.toRGB(this.toHSL(), 'hsl')
+      this.R = RGB.r
+      this.G = RGB.g
+      this.B = RGB.b
+      return this
+    }
+  }
+  a (val) {
+    if (typeof val === 'undefined') {
+      return this.A
+    } else {
+      this.A = getLimitedNumber(parseFloat(val) || 0, 1, 0)
+      return this
+    }
+  }
   getColorType (color) {
     return getColorType(color)
   }
   toHex () {
-    return `#${parseToHex(this.r)}${parseToHex(this.g)}${parseToHex(this.b)}`
+    return `#${parseToHex(this.R)}${parseToHex(this.G)}${parseToHex(this.B)}`
   }
   toRGB () {
-    return `rgb(${this.r},${this.g},${this.b})`
+    return `rgb(${this.R},${this.G},${this.B})`
   }
   toRGBA () {
-    return `rgb(${this.r},${this.g},${this.b},${this.a})`
+    return `rgb(${this.R},${this.G},${this.B},${this.A})`
   }
   toHSL () {
-    return `rgb(${this.h},${this.s},${this.l})`
+    return `rgb(${this.H},${this.S * 100}%,${this.L * 100}%)`
   }
   toHSLA () {
-    return `rgb(${this.h},${this.s},${this.l},${this.a})`
+    return `rgb(${this.H},${this.S * 100}%,${this.L * 100}%,${this.A})`
   }
 }

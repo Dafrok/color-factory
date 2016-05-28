@@ -7,9 +7,13 @@ export function parseToHex(num) {
   return ret.length === 1 ? ('0' + ret) : ret
 }
 
+function getLimitedNumber(num, max, min) {
+  return num > max ? max : (num < min ? min : num)
+}
+
 function rgbaToHSL (color) {
   const rgbAry = color.slice(color.indexOf('(') + 1, color.indexOf(')')).split(',')
-  const hslAry = rgbConverter(rgbAry[0], rgbAry[1], rgbAry[2])
+  const hslAry = rgbConverter(getLimitedNumber(rgbAry[0], 255, 0), getLimitedNumber(rgbAry[1], 255, 0), getLimitedNumber(rgbAry[2], 255, 0))
   hslAry[1] = hslAry[1].slice(0, -1) / 100
   hslAry[2] = hslAry[2].slice(0, -1) / 100
   return {
@@ -47,21 +51,17 @@ function hexToRGB(color) {
 function rgbaToRGB(color) {
   const rgbAry = color.slice(color.indexOf('(') + 1, color.indexOf(')')).split(',')
   return {
-    r: +rgbAry[0],
-    g: +rgbAry[1],
-    b: +rgbAry[2]
+    r: getLimitedNumber(+rgbAry[0], 255, 0),
+    g: getLimitedNumber(+rgbAry[1], 255, 0),
+    b: getLimitedNumber(+rgbAry[2], 255, 0)
   }
 }
 
 function hslaToRGB(color) {
   const hslAry = color.slice(color.indexOf('(') + 1, color.indexOf(')')).split(',')
   let h = hslAry[0] % 360
-  let s = hslAry[1].slice(0, -1) / 100
-  let l = hslAry[2].slice(0, -1) / 100
-  s = Math.min(s, 1)
-  s = Math.max(s, 0)
-  l = Math.min(l, 1)
-  l = Math.max(l, 0)
+  let s = getLimitedNumber(hslAry[1].slice(0, -1) / 100, 1, 0)
+  let l = getLimitedNumber(hslAry[2].slice(0, -1) / 100, 1, 0)
   const rgbAry = hslConverter(h, s, l)
   return {
     r: rgbAry[0],
