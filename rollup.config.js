@@ -4,7 +4,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import replace from 'rollup-plugin-replace'
 
 export default {
-    entry: './src/color.js',
+    entry: 'src/color.js',
     dest: 'index.js',
     format: 'umd',
     moduleName: 'ColorFactory',
