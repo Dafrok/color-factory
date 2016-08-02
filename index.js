@@ -4,35 +4,6 @@
 	(global.ColorFactory = factory());
 }(this, function () { 'use strict';
 
-	var babelHelpers = {};
-
-	babelHelpers.classCallCheck = function (instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	};
-
-	babelHelpers.createClass = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];
-	      descriptor.enumerable = descriptor.enumerable || false;
-	      descriptor.configurable = true;
-	      if ("value" in descriptor) descriptor.writable = true;
-	      Object.defineProperty(target, descriptor.key, descriptor);
-	    }
-	  }
-
-	  return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-	    if (staticProps) defineProperties(Constructor, staticProps);
-	    return Constructor;
-	  };
-	}();
-
-	babelHelpers;
-
-
 	var __commonjs_global = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
 	function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports, __commonjs_global), module.exports; }
 
@@ -268,8 +239,8 @@
 	    return !!el.style.color && el.style.color !== 'transparent';
 	    // return computedColor = (el.currentStyle ? el.currentStyle : window.getComputedStyle(el, null)).color
 	  } else {
-	      return color in csscolors[color];
-	    }
+	    return color in csscolors[color];
+	  }
 	}
 
 	function isTransparent(color) {
@@ -546,10 +517,34 @@
 	  }
 	};
 
+	var classCallCheck = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+
+	var createClass = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      Object.defineProperty(target, descriptor.key, descriptor);
+	    }
+	  }
+
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
 	var Color = function () {
 	  function Color() {
 	    var cssColor = arguments.length <= 0 || arguments[0] === undefined ? { r: 0, g: 0, b: 0, h: 0, s: 0, l: 0, a: 0 } : arguments[0];
-	    babelHelpers.classCallCheck(this, Color);
+	    classCallCheck(this, Color);
 
 	    var color = void 0;
 	    var type = void 0;
@@ -587,7 +582,7 @@
 	    }
 	  }
 
-	  babelHelpers.createClass(Color, [{
+	  createClass(Color, [{
 	    key: 'r',
 	    value: function r(val) {
 	      if (typeof val === 'undefined') {
@@ -699,17 +694,31 @@
 	  }, {
 	    key: 'toRGBA',
 	    value: function toRGBA() {
-	      return 'rgb(' + this.R + ',' + this.G + ',' + this.B + ',' + this.A + ')';
+	      return 'rgba(' + this.R + ',' + this.G + ',' + this.B + ',' + this.A + ')';
 	    }
 	  }, {
 	    key: 'toHSL',
 	    value: function toHSL() {
-	      return 'rgb(' + this.H + ',' + this.S * 100 + '%,' + this.L * 100 + '%)';
+	      return 'hsl(' + this.H + ',' + this.S * 100 + '%,' + this.L * 100 + '%)';
 	    }
 	  }, {
 	    key: 'toHSLA',
 	    value: function toHSLA() {
-	      return 'rgb(' + this.H + ',' + this.S * 100 + '%,' + this.L * 100 + '%,' + this.A + ')';
+	      return 'hsla(' + this.H + ',' + this.S * 100 + '%,' + this.L * 100 + '%,' + this.A + ')';
+	    }
+	  }, {
+	    key: 'toSTRING',
+	    value: function toSTRING() {
+	      if (this.A === 0) {
+	        return 'transparent';
+	      } else if (this.A === 1) {
+	        for (var key in csscolors) {
+	          if (csscolors[key][0] === this.R && csscolors[key][1] === this.G && csscolors[key][2] === this.B) {
+	            return key;
+	          }
+	        }
+	      }
+	      return '';
 	    }
 	  }]);
 	  return Color;
