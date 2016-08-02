@@ -1,3 +1,4 @@
+import csscolors from 'color-name'
 import getColorType from './color-type.js'
 import colorParse, {parseToHex, getLimitedNumber} from './color-parse.js'
 import {isLegalRate, isLegalNumber} from './color-validator.js'
@@ -129,12 +130,24 @@ export default class Color {
     return `rgb(${this.R},${this.G},${this.B})`
   }
   toRGBA () {
-    return `rgb(${this.R},${this.G},${this.B},${this.A})`
+    return `rgba(${this.R},${this.G},${this.B},${this.A})`
   }
   toHSL () {
-    return `rgb(${this.H},${this.S * 100}%,${this.L * 100}%)`
+    return `hsl(${this.H},${this.S * 100}%,${this.L * 100}%)`
   }
   toHSLA () {
-    return `rgb(${this.H},${this.S * 100}%,${this.L * 100}%,${this.A})`
+    return `hsla(${this.H},${this.S * 100}%,${this.L * 100}%,${this.A})`
+  }
+  toSTRING () {
+    if (this.A === 0) {
+      return 'transparent'
+    } else if (this.A === 1) {
+      for (const key in csscolors) {
+        if (csscolors[key][0] === this.R && csscolors[key][1] === this.G && csscolors[key][2] === this.B) {
+          return key
+        }
+      }
+    }
+    return ''
   }
 }
