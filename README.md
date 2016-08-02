@@ -41,6 +41,10 @@ Convert color instance to CSS hsl string.
 
 Convert color instance to CSS hsla string.
 
+#### .toSTRING()
+
+Convert color instance to CSS color string, such as 'red', 'blue', 'transparent' etc.
+
 #### .r()
 
 Get the value of red channel.
@@ -50,7 +54,7 @@ Get the value of red channel.
 - value
   - Type: String
   - Description: Set the value of red channel.
-- Return: this 
+- Return: this
 
 #### .g()
 
@@ -61,7 +65,7 @@ Get the value of green channel.
 - value
   - Type: String
   - Description: Set the value of green channel.
-- Return: this 
+- Return: this
 
 #### .b()
 
@@ -72,7 +76,7 @@ Get the value of blue channel.
 - value
   - Type: String
   - Description: Set the value of blue channel.
-- Return: this 
+- Return: this
 
 #### .h()
 
@@ -83,7 +87,7 @@ Get the value of hue.
 - value
   - Type: String
   - Description: Set the value of hue.
-- Return: this 
+- Return: this
 
 #### .s()
 
@@ -94,7 +98,7 @@ Get the value of saturation.
 - value
   - Type: String
   - Description: Set the value of saturation.
-- Return: this 
+- Return: this
 
 #### .l()
 
@@ -105,7 +109,7 @@ Get the value of lightness.
 - value
   - Type: String
   - Description: Set the value of lightness.
-- Return: this 
+- Return: this
 
 #### .a()
 
@@ -116,4 +120,4 @@ Get the value of alpha channel.
 - value
   - Type: String
   - Description: Set the value of alpha.
-- Return: this 
+- Return: this
