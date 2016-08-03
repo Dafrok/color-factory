@@ -686,8 +686,8 @@
 	      return _getColorType(color);
 	    }
 	  }, {
-	    key: 'toHex',
-	    value: function toHex() {
+	    key: 'toHEX',
+	    value: function toHEX() {
 	      return '#' + parseToHex(this.R) + parseToHex(this.G) + parseToHex(this.B);
 	    }
 	  }, {
