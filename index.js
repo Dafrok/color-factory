@@ -469,7 +469,11 @@
 	}
 
 	function namedToRGB(color) {
-	  return hexToRGB(csscolors[color]);
+	  return {
+	    r: csscolors[color][0],
+	    g: csscolors[color][1],
+	    b: csscolors[color][2]
+	  };
 	}
 
 	var colorParse = {
