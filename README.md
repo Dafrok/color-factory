@@ -21,7 +21,7 @@ colorFromObject.toRGBA()
 
 ## API
 
-#### .toHex()
+#### .toHEX()
 
 Convert color instance to CSS hex string.
 

@@ -1,6 +1,6 @@
 {
   "name": "color-factory",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "CSS color converter",
   "main": "index.js",
   "scripts": {

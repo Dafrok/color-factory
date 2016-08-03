@@ -123,7 +123,7 @@ export default class Color {
   getColorType (color) {
     return getColorType(color)
   }
-  toHex () {
+  toHEX () {
     return `#${parseToHex(this.R)}${parseToHex(this.G)}${parseToHex(this.B)}`
   }
   toRGB () {
