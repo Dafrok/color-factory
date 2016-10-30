@@ -1,25 +1,25 @@
 {
   "name": "color-factory",
-  "version": "0.1.8",
+  "version": "1.0.1",
   "description": "CSS color converter",
   "main": "index.js",
   "scripts": {
-    "production": "rollup -c"
+    "compile": "rollup -c"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dafrok/color-factory.git"
   },
   "keywords": [
-    "color",
     "css",
+    "color",
     "convert",
     "check",
     "transmit",
     "color-factory",
     "object"
   ],
-  "author": "Dafrok (o.o@mug.dog)",
+  "author": "Dafrok <o.o@mug.dog>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Dafrok/color-factory/issues"
