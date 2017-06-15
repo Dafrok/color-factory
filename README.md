@@ -1,5 +1,5 @@
 # color-factory
-CSS colors handler
+CSS colors transformer
 
 ## Install
 ```
