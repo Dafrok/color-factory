@@ -4,12 +4,20 @@ import commonjs from 'rollup-plugin-commonjs'
 import replace from 'rollup-plugin-replace'
 
 export default {
-    entry: 'src/color.js',
-    dest: 'index.js',
-    format: 'umd',
-    moduleName: 'ColorFactory',
+    input: 'src/color.js',
+    output: {
+        file: 'index.js',
+        format: 'umd',
+        name: 'ColorFactory',
+    },
     plugins: [
-        babel({presets: ['es2015-rollup']}),
+        babel({
+            exclude: 'node_modules/**',
+            babelrc: false,
+            presets: [
+                ["env", { "modules": false }]
+            ]
+        }),
         nodeResolve({
             jsnext: true,
             main: true,
