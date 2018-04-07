@@ -1,6 +1,10 @@
 # color-factory
 CSS colors transformer
 
+## Try It Out
+
+https://dafrok.github.io/css-color-playground/
+
 ## Install
 ```
 $ npm i color-factory
